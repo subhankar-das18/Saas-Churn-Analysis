@@ -37,10 +37,8 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 
 ## 📊 Dashboard Preview
 
-> 📸 *Screenshot coming soon — upload your dashboard image and replace this section with:*
-> ```
-> ![Dashboard Preview](YOUR-IMAGE-LINK-HERE)
-> ```
+ ![Dashboard Preview](Dashboard/Preview.png)
+
 
 ---
 
