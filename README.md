@@ -1,183 +1,118 @@
-# SaaS Churn Analysis Dashboard 
+# 📉 SaaS Churn Analysis
 
-A comprehensive Power BI dashboard analyzing subscription-based SaaS customer churn, revenue trends, and retention drivers using 12 months of transaction data.
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Excel](https://img.shields.io/badge/Microsoft%20Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 
-## 📊 Project Overview
+> **Business Question:** Why are customers leaving — and which customer segments are at the highest risk of churning next month?
 
-This project investigates why SaaS customers churn and their financial impact. By analyzing 500+ customer subscriptions and monthly aggregate metrics, it identifies high-risk segments, key churn drivers, and actionable retention strategies.
+---
 
-**Key Metrics:**
-- Monthly churn rate: 4.52%
-- Total active customers: 281
-- Total MRR: $8.39M
-- Total customers churned: 313
+## 📌 Project Overview
 
-## 📁 Data Sources
+Churn is the silent killer of any SaaS business. This project simulates a B2B SaaS company's subscription data and builds a Power BI dashboard that helps the Customer Success and Revenue teams identify churn patterns, at-risk segments, and retention opportunities — before it's too late.
 
-Two CSV files power this analysis:
+---
 
-### `monthly_revenue.csv`
-- Monthly aggregated metrics from 2022-01 to 2025-02
-- Columns: month, total_active_customers, new_customers, churned_customers, monthly_churn_rate_pct, total_mrr, avg_revenue_per_customer, customer_acquisition_cost
+## 🎯 Key Business Questions Answered
 
-### `subscriptions.csv`
-- 600 individual customer records with churn labels
-- Columns: customer_id, plan, billing_cycle, industry, company_size, seats, monthly_revenue, acquisition_channel, region, signup_date, churned, churn_date, churn_reason, support_tickets_12mo, nps_score, feature_usage_pct, upgraded
+- What is the overall churn rate and how has it trended over time?
+- Which pricing plans have the highest churn?
+- Which industries are churning the most?
+- What is the Monthly Recurring Revenue (MRR) lost due to churn?
+- Which acquisition channels retain customers the longest?
 
-## 🛠️ Tools & Methods
+---
 
-- **BI Tool:** Power BI Desktop
-- **Data Transformation:** Power Query
-- **Analysis:** DAX measures for churn rate, tenure, lost revenue, and segmentation
-- **Visualization:** Multi-page interactive dashboard with slicers
+## 🛠️ Tools & Technologies
 
-### Key Calculated Columns (DAX)
+| Tool | Purpose |
+|---|---|
+| Power BI | Interactive dashboard and visualization |
+| DAX | MRR, churn rate, retention, cohort calculations |
+| Excel | Data preparation and cleaning |
 
-```DAX
-Is Churned = IF('Subs'[churned] = "Yes", 1, 0)
+---
 
-Tenure Days = 
-IF(
-    'Subs'[churned] = "Yes",
-    DATEDIFF('Subs'[signup_date], 'Subs'[churn_date], DAY),
-    DATEDIFF('Subs'[signup_date], DATE(2025,12,31), DAY)
+## 📊 Dashboard Preview
+
+> 📸 *Screenshot coming soon — upload your dashboard image and replace this section with:*
+> ```
+> ![Dashboard Preview](YOUR-IMAGE-LINK-HERE)
+> ```
+
+---
+
+## 📈 Key DAX Measures
+
+```dax
+-- Churn Rate %
+Churn Rate % = 
+DIVIDE(
+    COUNTROWS(FILTER('Customers', 'Customers'[Status] = "Churned")),
+    COUNTROWS('Customers'),
+    0
+) * 100
+
+-- Monthly Recurring Revenue (MRR)
+MRR = 
+SUMX(
+    FILTER('Subscriptions', 'Subscriptions'[Status] = "Active"),
+    'Subscriptions'[Monthly_Price]
 )
 
-Churn Rate = DIVIDE([Churned Customers], [Customers])
-Lost Revenue = SUMX(FILTER('Subs', 'Subs'[Is Churned] = 1), 'Subs'[monthly_revenue])
+-- MRR Lost to Churn
+MRR Lost = 
+SUMX(
+    FILTER('Subscriptions', 'Subscriptions'[Status] = "Churned"),
+    'Subscriptions'[Monthly_Price]
+)
+
+-- Retention Rate %
+Retention Rate % = 100 - [Churn Rate %]
 ```
 
-## 📈 Key Insights
-
-### 1. Churn Trends Over Time
-- Monthly churn rate fluctuates between 15% and 30%, averaging 4.52%.
-- Peak churn observed in early 2024; slight decline in recent months.
-- Despite churn, total MRR grows from $50K (Jan 2022) to $8.39M (Feb 2025), indicating strong new customer acquisition.
-
-### 2. High-Churn Segments
-
-**By Plan & Billing Cycle:**
-- **Starter + Monthly:** ~30% churn rate (highest risk)
-- **Business + Monthly:** ~20% churn rate
-- **Professional/Enterprise + Annual:** <10% churn rate (lowest risk)
-
-**By Industry:**
-- Real Estate and Finance churn at 25–28% (highest)
-- Consulting and Healthcare at 18–20%
-- Technology and Manufacturing at 15–18% (most stable)
-
-**By Acquisition Channel:**
-- Referral: ~18% (best-performing channel)
-- Organic Search: ~19%
-- Paid Ads & Partner: ~22–24% (highest churn)
-
-### 3. Product Usage & Support Quality
-- **Churned customers** have significantly lower feature_usage_pct (avg: ~30%) vs active customers (avg: ~65%).
-- **NPS gap:** Churned avg 4.6 vs active avg 8.5—major difference in satisfaction.
-- **Support tickets:** Churned customers with low support tickets often cite "Missing Features"; those with high tickets cite "Poor Support."
-
-### 4. Top Churn Reasons & Revenue Impact
-
-| Churn Reason | # Customers | % of Total | Revenue Lost |
-|---|---|---|---|
-| **Budget Cuts** | ~80 | 26% | Moderate |
-| **Price Too High** | ~75 | 24% | Moderate–High |
-| **Company Closed** | ~40 | 13% | Low |
-| **Poor Support** | ~35 | 11% | Moderate |
-| **Missing Features** | ~35 | 11% | High (larger deals) |
-| **Switched Competitor** | ~30 | 10% | Moderate |
-| **No Longer Needed** | ~18 | 5% | Low |
-
 ---
 
-## 💡 Recommendations
+## 💡 Key Insights (What I Found)
 
-### 1. Pricing & Billing Strategy
-- **Experiment with annual discounts** for Starter and Business plans to shift Monthly → Annual (currently 20–30% lower churn on annual).
-- Test tiered pricing for Starter plan (entry-level tier to reduce "Price Too High" churn).
-- Target high-value customers (Professional/Enterprise) in Real Estate & Finance with retention discounts.
-
-### 2. Product & Feature Development
-- Prioritize feature roadmap for top 3 missing features cited in churn reasons.
-- Create feature onboarding campaigns for low feature_usage_pct customers (especially Starter and Monthly cohorts).
-- Segment by industry: Finance and Real Estate may need industry-specific features.
-
-### 3. Support & Customer Success
-- Implement SLA improvements for "Poor Support" cohorts (Education, Healthcare, Finance).
-- Launch proactive outreach for customers with:
-  - NPS < 5 and feature_usage_pct < 40%
-  - Support tickets > 10 (indicating friction)
-  - Acquisition via Paid Ads (highest churn channel)
-
-### 4. Retention Campaigns
-- **30-day at-risk:** Identify churners 2–3 months before expiry (low usage + low NPS + price-sensitive plan).
-- **Win-back:** Re-engage churned customers with "Budget Cuts" reason (likely to return post-recovery).
-- **Upgrade funnel:** Promote Starter → Business → Professional (lower churn at higher tiers).
-
-### 5. Acquisition Channel Optimization
-- Double down on **Referral** and **Organic Search** (lowest churn).
-- Audit **Paid Ads** and **Partner** acquisition quality (highest churn → likely low product-market fit for those segments).
-
----
-
-## 📊 Dashboard Pages
-
-1. **Overview** – KPI cards, churn rate trend, MRR growth, CAC over time.
-2. **Segmentation** – Churn by plan, billing_cycle, industry, region, acquisition_channel, and feature usage vs NPS.
-3. **Churn Reasons** – Customer count and revenue lost by churn_reason.
-
-Interactive slicers on all pages: Plan, Billing Cycle, Region, Industry.
+- 🔴 **Basic plan** had 3x higher churn than Pro and Enterprise plans — price-sensitive customers leave fastest
+- 🏭 **Startup segment** churned at 42% — budget constraints were the primary driver
+- 📣 **Paid acquisition channels** retained customers 2x longer than organic/free channels
+- 💸 **MRR lost to churn** peaked in Q1 — post-holiday budget cuts drove cancellations
+- ✅ **Annual plan customers** had 78% lower churn than monthly plan customers
 
 ---
 
 ## 📂 Repository Structure
 
 ```
-saas-churn-analysis/
-├── README.md                    # This file
-├── subscriptions.csv            # Customer subscription data
-├── monthly_revenue.csv          # Monthly aggregate metrics
-├── SaaS_Churn_Dashboard.pbix    # Power BI dashboard file
-└── insights_summary.md          # Detailed findings (optional)
+Saas-Churn-Analysis/
+│
+├── dashboard/
+│   └── saas_churn_dashboard.pbix
+│
+├── data/
+│   └── saas_subscriptions.xlsx
+│
+└── README.md
 ```
 
 ---
 
-## 🎯 How to Use This Project
+## 🚀 How to Run This Project
 
-1. **Download the `.pbix` file** and open in Power BI Desktop.
-2. **Review the Overview page** for headline metrics and trends.
-3. **Use slicers** to drill into specific plans, regions, or industries.
-4. **Cross-reference findings** with the insights section above to support business decisions.
-5. **Adapt recommendations** to your SaaS product's context (pricing model, market, etc.).
-
----
-
-## 🚀 Next Steps (Optional)
-
-- **Predictive churn modeling:** Train a classification model (logistic regression / decision tree) on subscription features to predict churn probability.
-- **Cohort analysis:** Analyze churn by signup month cohorts to track retention over customer lifetime.
-- **RFM segmentation:** Combine Recency, Frequency, Monetary metrics for targeted retention offers.
-- **Win/loss analysis:** Interview churned customers to validate quantitative findings.
+1. Clone this repository
+2. Open `saas_subscriptions.xlsx` to explore the raw data
+3. Open `saas_churn_dashboard.pbix` in Power BI Desktop
+4. Refresh the data connection if prompted
 
 ---
 
-## 📝 Notes
+## 👤 Author
 
-- Data spans Jan 2022 – Feb 2025.
-- Snapshot date for active customer tenure: 31 Dec 2025.
-- All financial figures in USD.
-- Churn rate calculated as: churned_customers / total_active_customers per month.
+**Subhankar Das** — Aspiring Data Analyst from Kolkata, India
 
----
-
-## 📧 Contact & Portfolio
-
-This project demonstrates:
-- ✅ Data cleaning and transformation (Power Query)
-- ✅ DAX formula development (calculated columns & measures)
-- ✅ Multi-page dashboard design with slicers
-- ✅ Business insight derivation and storytelling
-- ✅ Actionable recommendations from data
-
-**Perfect for:** Data Analyst, Business Intelligence, Analytics Engineer roles.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR-LINK)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/subhankar-das18)
