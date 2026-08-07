@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 Project Overview
+## 📌 Project Overview    
 
 Churn is the silent killer of any SaaS business. This project simulates a B2B SaaS company's subscription data and builds a Power BI dashboard that helps the Customer Success and Revenue teams identify churn patterns, at-risk segments, and retention opportunities — before it's too late.
 
