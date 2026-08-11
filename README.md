@@ -82,7 +82,7 @@ Retention Rate % = 100 - [Churn Rate %]
 - 💸 **MRR lost to churn** peaked in Q1 — post-holiday budget cuts drove cancellations
 - ✅ **Annual plan customers** had 78% lower churn than monthly plan customers
 
----
+---    
 
 ## 📂 Repository Structure
 
