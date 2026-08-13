@@ -84,7 +84,7 @@ Retention Rate % = 100 - [Churn Rate %]
 
 ---    
 
-## 📂 Repository Structure
+## 📂 Repository Structure      
 
 ```
 Saas-Churn-Analysis/
