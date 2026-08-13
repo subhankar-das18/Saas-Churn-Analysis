@@ -27,7 +27,7 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 
 ## 🛠️ Tools & Technologies
 
-| Tool | Purpose |
+| Tool | Purpose |       
 |---|---|
 | Power BI | Interactive dashboard and visualization |
 | DAX | MRR, churn rate, retention, cohort calculations |
