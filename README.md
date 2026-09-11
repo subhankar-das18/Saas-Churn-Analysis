@@ -38,7 +38,14 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 ## 📊 Dashboard Preview   
 
  
- ![Dashboard Preview](Dashboard/Preview.png)
+ - KPIs: Churn Rate %, MRR, MRR Lost, Retention Rate %  
+- Visuals:  
+  - Churn rate over time  
+  - Churn by pricing plan  
+  - Churn by industry  
+  - MRR lost to churn by quarter  
+  - Retention by acquisition channel  
+- Slicers: Plan type, Industry, Acquisition channel, Time period
 
 
 ---    
@@ -89,13 +96,12 @@ Retention Rate % = 100 - [Churn Rate %]
 ```
 Saas-Churn-Analysis/
 │
-├── dashboard/
-│   └── saas_churn_dashboard.pbix
+├── Dataset/
+│   └── monthly_revenue.csv
+│   └──subscriptions.xlsx
+├── README.md
 │
-├── data/
-│   └── saas_subscriptions.xlsx
-│
-└── README.md
+└── SaaS_Churn_Dashboard.pbix
 ```
 
 ---
@@ -103,15 +109,15 @@ Saas-Churn-Analysis/
 ## 🚀 How to Run This Project
 
 1. Clone this repository
-2. Open `saas_subscriptions.xlsx` to explore the raw data
-3. Open `saas_churn_dashboard.pbix` in Power BI Desktop
+2. Open `subscriptions.xlsx` & `monthly_revenue.csv` to explore the raw data
+3. Open `SaaS_Churn_Dashboard.pbix` in Power BI Desktop
 4. Refresh the data connection if prompted
 
 ---
 
 ## 👤 Author
 
-**Subhankar Das** — Aspiring Data Analyst from Kolkata, India     
+**Subhankar Das** — Aspiring Data Analyst from Siliguri, India     
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR-LINK)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/subhankar-das18)
