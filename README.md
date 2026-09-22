@@ -119,5 +119,5 @@ Saas-Churn-Analysis/
 
 **Subhankar Das** — A Data Analyst from Siliguri, India     
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/subhankar-das-the-analyst)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]([www.linkedin.com/in/subhankar-das-the-analyst](https://www.linkedin.com/in/subhankar-das-01a1b6244/))
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/subhankar-das18)
