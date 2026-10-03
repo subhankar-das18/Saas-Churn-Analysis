@@ -21,7 +21,7 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 - Which pricing plans have the highest churn?
 - Which industries are churning the most?
 - What is the Monthly Recurring Revenue (MRR) lost due to churn?
-- Which acquisition channels retain customers the longest?
+- Which acquisition channels retain customers the longest?   
 
 ---
 
