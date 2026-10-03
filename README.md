@@ -106,7 +106,7 @@ Saas-Churn-Analysis/
 
 ---
 
-## 🚀 How to Run This Project
+## 🚀 How to Run This Project   
 
 1. Clone this repository
 2. Open `subscriptions.xlsx` & `monthly_revenue.csv` to explore the raw data
