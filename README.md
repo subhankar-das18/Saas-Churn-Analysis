@@ -50,7 +50,7 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 
 ---    
 
-## 📈 Key DAX Measures        
+## 📈 Key DAX Measures           
 
 ```dax
 -- Churn Rate %
