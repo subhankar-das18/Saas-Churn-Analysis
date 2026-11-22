@@ -15,7 +15,7 @@ Churn is the silent killer of any SaaS business. This project simulates a B2B Sa
 
 ---
 
-## 🎯 Key Business Questions Answered
+## 🎯 Key Business Questions Answered  
 
 - What is the overall churn rate and how has it trended over time?
 - Which pricing plans have the highest churn?
